@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.qiushengfei.cms.pojo.Article;
+
 public interface BaseDao<T> {
 	/**
 	 * @Title: select   
@@ -50,4 +52,6 @@ public interface BaseDao<T> {
 	 * @throws
 	 */
 	int delete(@Param("ids") String ids);
+	
+	List<Article> selectimg();
 }

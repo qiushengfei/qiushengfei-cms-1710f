@@ -13,6 +13,15 @@ public class Collect {
 	private Date created;
 	/**  **/
 	private Integer user_id;
+	
+	private User user;
+	
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
 	public Integer getId() {
 		return id;
 	}

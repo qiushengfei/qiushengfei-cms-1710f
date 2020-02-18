@@ -10,12 +10,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.github.pagehelper.PageInfo;
 import com.qiushengfei.cms.common.CmsConst;
 import com.qiushengfei.cms.common.CmsMd5Util;
 import com.qiushengfei.cms.common.JsonResult;
+import com.qiushengfei.cms.controller.myThread.MyThread1;
+import com.qiushengfei.cms.controller.myThread.MyThread2;
+import com.qiushengfei.cms.controller.myThread.MyThread3;
+import com.qiushengfei.cms.controller.myThread.MyThread4;
+import com.qiushengfei.cms.controller.myThread.MyThread5;
+import com.qiushengfei.cms.pojo.Collect;
 import com.qiushengfei.cms.pojo.User;
+import com.qiushengfei.cms.service.CollectService;
 import com.qiushengfei.cms.service.UserService;
 import com.qiushengfei.common.utils.StringUtil;
 
@@ -24,6 +33,10 @@ import com.qiushengfei.common.utils.StringUtil;
 public class UserController {
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private CollectService  collectService;
+	
 	/**
 	 * @Title: userCenter   
 	 * @Description: 用户中心   
@@ -155,5 +168,21 @@ public class UserController {
 		userService.set(user);
 		return JsonResult.sucess();
 	}
+	
+	//收藏夹
+	@GetMapping("/collect")
+	public String collect (@RequestParam(defaultValue = "1") Integer pageNum,@RequestParam(defaultValue = "4") Integer pageSize,HttpSession session,Model model) {
+		
+		User user = (User) session.getAttribute(CmsConst.UserSessionKey);
+		PageInfo<Collect> info = collectService.selects(user.getId(), pageNum, pageSize);
+		model.addAttribute("pageInfo", info);
+		return "user/collect";
+	}
+	
+	
+	
+	
+	
+	
 	
 }

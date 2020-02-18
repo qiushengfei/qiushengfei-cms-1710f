@@ -1,12 +1,11 @@
-package com.qiushengfei.cms.dao;
-
-import java.util.List;
+package com.qiushengfei.cms.service;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.github.pagehelper.PageInfo;
 import com.qiushengfei.cms.pojo.Collect;
 
-public interface CollectDao {
+public interface CollectService {
 
 	
 	/**
@@ -35,7 +34,7 @@ public interface CollectDao {
 	 * @return
 	 * @return: List<Collect>
 	 */
-	List<Collect> selects(Integer userId);
+	PageInfo<Collect> selects(Integer userId,Integer page,Integer pageSize);
 	
 	/**
 	 * 

@@ -48,5 +48,6 @@
 			<mvc:exclude-mapping path="/admin/signOut" />
 			<bean class="com.qiushengfei.cms.common.UserAdminAuthInterceptor"></bean>
 		</mvc:interceptor>
+		
 	</mvc:interceptors>
 </beans>

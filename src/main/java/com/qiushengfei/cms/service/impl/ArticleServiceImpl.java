@@ -166,4 +166,12 @@ public class ArticleServiceImpl implements ArticleService{
 		return articleDao.select(article);
 	}
 
+	//最新图片
+	@Override
+	public List<Article> getimage(Integer pageSize) {
+		PageHelper.startPage(1, pageSize);
+		Article article = new Article();
+		return articleDao.selectimg();
+	}
+
 }

@@ -19,6 +19,7 @@ import com.qiushengfei.cms.common.JsonResult;
 import com.qiushengfei.cms.pojo.Article;
 import com.qiushengfei.cms.pojo.Category;
 import com.qiushengfei.cms.pojo.Channel;
+import com.qiushengfei.cms.pojo.Genericitys;
 import com.qiushengfei.cms.pojo.User;
 import com.qiushengfei.cms.service.ArticleService;
 
@@ -106,4 +107,53 @@ public class ArticleController {
 		articleService.deleteByIds(ids);
 		return JsonResult.sucess();
 	}
+	
+	
+	/**
+	 * @Title: add   
+	 * @Description: 跳转到图片发布页面
+	 * @param: @return      
+	 * @return: String      
+	 * @throws
+	 */
+	@GetMapping("/addimg")
+	public String addimg(Integer id,Model model) {
+		List<Channel> channelList = articleService.getChannelAll();
+		model.addAttribute("channelList", channelList);
+		if(id!=null) {
+			Article article = articleService.getById(id);
+			List<Category> cateList = articleService.getCateListByChannelId(article.getChannel_id());
+			model.addAttribute("article", article);
+			model.addAttribute("cateList", cateList);
+		}
+		return "article/addimg";
+	}
+	
+	
+	/**
+	 * @Title: save   
+	 * @Description: 发布图片
+	 * @param: @param article
+	 * @param: @return      
+	 * @return: String      
+	 * @throws
+	 */
+	@PostMapping("/saveimg")
+	public @ResponseBody JsonResult saveimg(Article article,HttpSession session) {
+		User userInfo = (User)session.getAttribute(CmsConst.UserSessionKey);
+		article.setUser_id(userInfo.getId());
+		
+		//判断文章内是否包含图片  吐过包含图片则把枚举类写进去，是图片写进去1
+		if(article.getContent().contains("<img")) {
+			//存储下标为图片的下标1
+			article.setGenericitys(1);
+		}else {
+			//否则存储0
+			article.setGenericitys(0);;
+		}
+		articleService.save(article);
+		return JsonResult.sucess();
+	}
+	
+	
 }

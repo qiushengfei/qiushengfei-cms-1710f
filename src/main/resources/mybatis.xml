@@ -9,6 +9,17 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
    <package name="com.qiushengfei.cms.pojo"/>
  </typeAliases>
  
+ <!-- 配置枚举类 -->
+
+	<typeHandlers>
+
+	  <typeHandler handler="org.apache.ibatis.type.EnumOrdinalTypeHandler" 
+
+	  javaType="com.qiushengfei.cms.pojo.Genericitys"/>
+
+	</typeHandlers>
+
+ 
  <!-- 配置分页助手拦截器 -->
 <plugins>
  <plugin interceptor="com.github.pagehelper.PageInterceptor"></plugin>

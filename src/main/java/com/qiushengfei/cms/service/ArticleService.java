@@ -130,4 +130,24 @@ public interface ArticleService {
 	 * @throws
 	 */
 	List<Article> getNewList(Integer pageSize);
+	
+	
+	
+	
+	
+	//最新图片
+	/**
+	 * @Title: getNewList   
+	 * @Description: 查询最新图片
+	 * @param: @param pageSize
+	 * @param: @return      
+	 * @return: List<ArticleService>      
+	 * @throws
+	 */
+	List<Article> getimage(Integer pageSize);
+	
+	
+	
+	
+	
 }

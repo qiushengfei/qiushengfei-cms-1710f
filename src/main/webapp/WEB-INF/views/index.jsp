@@ -86,6 +86,20 @@
 			<!-- 首页右侧 -->
 			<div class="col-3">
 				<div class="right">
+					<div>最新图片</div>
+					<ul class="list-unstyled">
+						<c:forEach items="${newimg }" var="newimg">
+						<li class="media">
+							<a href="/article/detail/${newimg.id }.html"><img src="${newimg.picture }"	style="height: 72px; width: 72px;" class="mr-3" alt="..."></a>
+							<div class="media-body">
+								<h5 class="mt-0 mb-1"><a href="/article/detail/${newimg.id }.html">${newimg.title }</a></h5>
+							</div></li>
+						</c:forEach>
+					</ul>
+				</div>
+			
+			
+				<div class="right">
 					<div>最新文章</div>
 					<ul class="list-unstyled">
 						<c:forEach items="${newArticleList }" var="item">

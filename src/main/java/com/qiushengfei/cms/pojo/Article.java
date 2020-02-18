@@ -44,8 +44,16 @@ public class Article {
 	private Integer commentCnt;
 	/** 投诉次数 **/
 	private Integer tousuCnt;
+	//文章内容字段 //存储下标
+	private int  genericitys;
 	
 	
+	public int getGenericitys() {
+		return genericitys;
+	}
+	public void setGenericitys(int genericitys) {
+		this.genericitys = genericitys;
+	}
 	public String getNickname() {
 		return nickname;
 	}
